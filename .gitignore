@@ -1,0 +1,11 @@
+Debug
+Release
+data
+
+*.*~
+*.bak
+TSGenieLamp_*
+*.rawdata
+*.sh
+
+*.o

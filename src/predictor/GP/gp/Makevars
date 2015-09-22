@@ -1,0 +1,30 @@
+## Makevars
+##
+## This assume that we can call Rscript to ask Rcpp about its locations
+## Use the R_HOME indirection to support installations of multiple R version
+PKG_CXXFLAGS=`${R_HOME}/bin/Rscript -e "Rcpp:::CxxFlags()"`
+PKG_LIBS=`${R_HOME}/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+OBJECTS = RInterface.o \
+        gaussianProcesses/GaussianProcess.o \
+        gaussianProcesses/PSGP.o \
+        gaussianProcesses/ForwardModel.o \
+        covarianceFunctions/ConstantCF.o \
+        covarianceFunctions/CovarianceFunction.o \
+        covarianceFunctions/ExponentialCF.o \
+        covarianceFunctions/Matern5CF.o \
+        covarianceFunctions/WhiteNoiseCF.o \
+        covarianceFunctions/SumCovarianceFunction.o \
+        covarianceFunctions/Transform.o \
+        covarianceFunctions/LogTransform.o \
+        covarianceFunctions/IdentityTransform.o \
+        likelihoodModels/AnalyticLikelihood.o \
+        likelihoodModels/LikelihoodType.o \
+        likelihoodModels/GaussianLikelihood.o \
+        optimisation/Optimisable.o \
+        optimisation/ModelTrainer.o \
+        optimisation/SCGModelTrainer.o \
+        psgp_common.o \
+        psgp_data.o \
+        psgp_estimator.o \
+        sensor_metadata_parser.o
