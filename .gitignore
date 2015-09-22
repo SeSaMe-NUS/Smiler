@@ -9,3 +9,11 @@ TSGenieLamp_*
 *.sh
 
 *.o
+
+
+*.i
+*.ii
+*.gpu
+*.ptx
+*.cubin
+*.fatbin

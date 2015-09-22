@@ -11,7 +11,7 @@ You can see a running example in the folder "src/demo". The demo also give a bri
 ####Dependencies
 The current code depends on the following external libraries:
 
-Armadillo (http://arma.sourceforge.net/), is a high quality C++ linear algebra library
+Armadillo (http://arma.sourceforge.net/), is a high quality C++ linear algebra library.
 
 OpenBLAS (optional, http://www.openblas.net/), is an optimized BLAS library. OpenBLAS is not mandatory, but it helps Armadillo achieve better performance.
 (You also can use BLAS, ATLAS and LAPACK together to replace the OpenBLAS.)
