@@ -889,11 +889,7 @@ __global__ void compute_windowQuery_lowerBound(
 	int query_round = (disjoint_win_num)/blockDim.x + ((disjoint_win_num)%blockDim.x!=0);
 
 	int wqr_start_idx = (wq_id==0)?0:d_windowQuery_lowerBound_endIdx[wq_id-1];
-	int wqr_endIdx = d_windowQuery_lowerBound_endIdx[wq_id];
 
-	if((wqr_endIdx-wqr_start_idx)!=disjoint_win_num){
-		printf("with debug purpose error: disjoint_win_num=%d blade_len=%d",wqr_endIdx-wqr_start_idx,blade_len);
-	}
 //
 	for(int i=0;i<query_round;i++){
 		int winIdx = i*blockDim.x+threadIdx.x;
@@ -1005,26 +1001,6 @@ __global__ void compute_windowQuery_enhancedLowerBound(
 				float q2d_dist = distFunc.dist(dim_keyword,dim_data_value,l,u);
 				atomicAdd(&(_d_windowQuery_lowerBound_q2d[wqr_start_idx+winJumpIdx]), q2d_dist);
 			}
-
-			//float dist =fmaxf(d2q_dist,q2d_dist);//0.5*(d2q_dist+q2d_dist);0.5*(d2q_dist+q2d_dist);//
-
-			//compute the distance from query to data
-//			int sidx = (idx-sc_band)>=0? (idx-sc_band):0;
-//			int eidx = (idx+sc_band<blade_len) ? (idx+sc_band):(blade_len-1);
-//			float min_q2d_dist=(float)INT_MAX;
-//			for(int j=sidx;j<=eidx;j++){
-//				float u = d_ts_data_u[j+blade_start_idx];
-//				float l=d_ts_data_l[j+blade_start_idx];
-//				float de=d_ts_data[j+blade_start_idx];
-//				float q2di_dist=distFunc.dist(dim_keyword,de,l,u);
-//				if(q2di_dist<min_q2d_dist){
-//					min_q2d_dist=q2di_dist;
-//				}
-//			}
-			//float min_q2d_dist=0;
-
-			//float dist = fmaxf(min_q2d_dist,d2q_dist);
-
 
 
 		}

@@ -109,7 +109,6 @@ void WrapperTSManagerOnGpuIdx::runMain_TSContPred_mulSensors(
 	//configuration for query
 	int queryItemMaxLen = Lvec.back()+y_offset;
 	int maxQueryLen = queryItemMaxLen+queryLenLoaded+contPrdStep;//for improve
-	int groupQueryNum = bladeNum*queryNumPerBlade;
 
 	vector<vector<float> > query_master_vec;
 	vector<int> query_blade_map;
