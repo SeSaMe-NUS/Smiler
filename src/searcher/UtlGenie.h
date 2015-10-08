@@ -87,7 +87,7 @@ public:
 
 
 	//load query out from data, i.e. blade data does not contain the query information.
-	static void loadDataQuery_leaveOut_mulBlades(string fileHolder, int fcol_start, int fcol_end, int queryNumPerBlade, int queryLen, int contStep,
+	static void loadDataQuery_leaveOut_mulBlades(string fileHolder, int fcol_start, int fcol_end, int queryNumPerBlade, int queryLen, //int contStep,
 			vector<vector<float> >& query_master_vec,
 			vector<int>& query_blade_map,
 			vector<vector<float> >& bladeData_vec){
@@ -114,7 +114,8 @@ public:
 
 			map<uint, vector<float> > query_map;
 
-			qser.getSampleQuery(file_data[i], queryNumPerBlade , queryLen+contStep, query_map);
+			qser.getSampleQuery(file_data[i], queryNumPerBlade ,
+					queryLen, query_map);
 			int query_count=0;
 
 			for(map<uint, vector<float> >::iterator itr=query_map.begin();itr!=query_map.end();++itr){

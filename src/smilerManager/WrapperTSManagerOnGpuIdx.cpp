@@ -108,7 +108,7 @@ void WrapperTSManagerOnGpuIdx::runMain_TSContPred_mulSensors(
 	int bladeNum =  fcol_end-fcol_start+1;
 	//configuration for query
 	int queryItemMaxLen = Lvec.back()+y_offset;
-	int maxQueryLen = queryItemMaxLen+queryLenLoaded;
+	int maxQueryLen = queryItemMaxLen+queryLenLoaded+contPrdStep;//for improve
 	int groupQueryNum = bladeNum*queryNumPerBlade;
 
 	vector<vector<float> > query_master_vec;
@@ -116,8 +116,7 @@ void WrapperTSManagerOnGpuIdx::runMain_TSContPred_mulSensors(
 	vector<vector<float> > bladeData_vec;
 
 	UtlGenie::loadDataQuery_leaveOut_mulBlades( fileHolder,  fcol_start,  fcol_end,  queryNumPerBlade,
-			maxQueryLen,  contPrdStep,
-			//queryItemMaxLen,  contPrdStep,//for sigmod1stSubmit branch
+			maxQueryLen,  //contPrdStep,
 			query_master_vec,
 		    query_blade_map,
 			bladeData_vec
@@ -127,10 +126,10 @@ void WrapperTSManagerOnGpuIdx::runMain_TSContPred_mulSensors(
 	tsManager.setDisplay(false);
 
 
-	tsManager.setIgnoreStep(0);
-	tsManager.setEnhancedLowerbound(2);
+	//tsManager.setIgnoreStep(0);// this is useless
+	tsManager.setEnhancedLowerbound(2);//use enhanced LB_keogh lower bound
 
-	tsManager.conf_DataEngine(bladeData_vec, sc_band,2*sc_band);
+	tsManager.conf_DataEngine(bladeData_vec, sc_band,2*sc_band,y_offset+1);//for improve
 	tsManager.conf_Predictor(Lvec, Kvec);
 	tsManager.set_hypPara( range,  sill,  nugget);
 
@@ -159,7 +158,7 @@ void WrapperTSManagerOnGpuIdx::runMain_TSPred_continuous(vector<vector<float> >&
 		tsManager.setIgnoreStep(0);
 	}
 
-	tsManager.conf_DataEngine(blade_data_vec, sc_band, sc_band*2);//set the default winDim as two times of sc_band
+	tsManager.conf_DataEngine(blade_data_vec, sc_band, sc_band*2,y_offset+1);//set the default winDim as two times of sc_band//for improve
 	tsManager.conf_Predictor(Lvec, Kvec);
 	tsManager.set_hypPara( range,  sill,  nugget);
 

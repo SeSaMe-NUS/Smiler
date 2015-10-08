@@ -17,21 +17,33 @@ DataEngineSmiler::~DataEngineSmiler() {
 	// TODO Auto-generated destructor stub
 }
 
-
-void DataEngineSmiler::conf_bladeData(vector<vector<float> >& in_bladeData_vec){
+//maxOffset: do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series//for improve
+void DataEngineSmiler::conf_bladeData(vector<vector<float> >& in_bladeData_vec, int maxOffset){//for improve
 	//do nothing for sc_band, just to keep the interface the same
-
-	tsp.conf_TSGPUManager_blade(in_bladeData_vec);
 
 	//load into data manipulator
 	this->bladeLoader_vec.clear();
 	this->bladeLoader_vec.resize(in_bladeData_vec.size());
 	for (int i = 0; i < in_bladeData_vec.size(); i++) {
-			bladeLoader_vec[i].loadData(in_bladeData_vec[i]);
+		bladeLoader_vec[i].loadData(in_bladeData_vec[i]);
 	}
+
+	vector<vector<float> > gpu_bladeData_vec;
+	gpu_bladeData_vec.resize(in_bladeData_vec.size());
+	for(size_t i=0;i<in_bladeData_vec.size(); i++) {
+		gpu_bladeData_vec[i].reserve(in_bladeData_vec[i].size()-maxOffset);
+		for(size_t j=0;j<in_bladeData_vec[i].size()-maxOffset;j++){
+			gpu_bladeData_vec[i].push_back(in_bladeData_vec[i][j]);
+		}
+	}
+
+	tsp.conf_TSGPUManager_blade(gpu_bladeData_vec);//for improve
+
+
 
 
 }
+
 
 
 

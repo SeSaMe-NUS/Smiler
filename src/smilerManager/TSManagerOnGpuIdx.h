@@ -117,12 +117,12 @@ public:
 		this->display = display;
 	}
 
-	void conf_DataEngine(vector<vector<float> >& in_bladeData_vec, int sc_band, int winDim) {
-			dataEngine->conf_bladeData(in_bladeData_vec);
-			this->sc_band=sc_band;
-			this->winDim = winDim;
-	}
-
+	//maxOffset: do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series//for improve
+	void conf_DataEngine(vector<vector<float> >& in_bladeData_vec, int sc_band, int winDim,int maxOffset) {//for improve
+				dataEngine->conf_bladeData(in_bladeData_vec,maxOffset);
+				this->sc_band=sc_band;
+				this->winDim = winDim;
+		}
 
 	void conf_Predictor(vector<int>& Lvec, vector<int>& Kvec) {
 		this->Lvec = Lvec;

@@ -19,7 +19,7 @@ public:
 	virtual ~DataEngineSmiler();
 
 
-	void conf_bladeData(vector<vector<float> >& in_bladeData_vec);
+	void conf_bladeData(vector<vector<float> >& in_bladeData_vec, int maxOffset);//for improve
 
 	void setup_contGroupQuery(
 			vector<vector<float> >& groupQuery_vec,

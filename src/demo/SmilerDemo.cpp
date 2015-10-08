@@ -94,7 +94,7 @@ void runExp_TSLOOCVContPred_errorAndTime_isp(){
 
 	int fcol_start = 1;
 	int fcol_end = 1;
-	int queryNumPerBlade = 10;//1024;//for debug
+	int queryNumPerBlade = 10;//
 
 	SmilerDemo tse;
 	tse.runExp_TSLOOCVContPred_errorAndTime(fileHolder,  fcol_start,  fcol_end,  queryNumPerBlade);

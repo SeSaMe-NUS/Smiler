@@ -17,3 +17,6 @@ TSGenieLamp_*
 *.ptx
 *.cubin
 *.fatbin
+
+.project
+.cproject

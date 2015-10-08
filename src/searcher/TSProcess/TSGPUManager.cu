@@ -471,7 +471,7 @@ void TSGPUManager::conf_dev_windowQuery(){
 	{
 		WindowQueryInfo *queryInfo = new WindowQueryInfo(windowQuerySet[i]);
 		h_windowQuery_info_set.push_back(queryInfo);
-		h_windowQuery_lowerBound_len[i] = h_ts_blade_len[windowQuerySet[i].bladeId]/winDim;
+		h_windowQuery_lowerBound_len[i] = this->maxWindowFeatureNumber;//for improve,  same number of maxwindowFeatureNumber
 	}
 
 

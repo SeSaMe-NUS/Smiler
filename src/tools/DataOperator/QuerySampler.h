@@ -45,13 +45,12 @@ public:
 	void getSampleQuery(vector<T>& data, int queryNum , int queryLen, map<uint, vector<T> >& _query, bool rnd=false){
 
 		//sample query data
-		//int si = (data.size() - 2*queryLen-1) / queryNum;//for sigmod1stSubmit branch
-		int si = (data.size() - queryLen-1) / queryNum;
+		int si = (data.size() - 2*queryLen-1) / queryNum;//for improve
 		//map<uint, vector<int>*>* query = new map<uint, vector<int>*> ();
 
 		for (int i = 0; i < queryNum; i++) {
 
-			int st = (i+1) * si;
+			int st = (i+1) * si+queryLen;//for improve
 			if(rnd==true){
 				st =st+( rand() % si);
 			}
