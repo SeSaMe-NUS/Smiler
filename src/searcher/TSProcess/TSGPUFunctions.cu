@@ -903,8 +903,6 @@ __global__ void compute_windowQuery_lowerBound(
 			atomicAdd(&(_d_windowQuery_lowerBound[wqr_start_idx+winJumpIdx]), dist);
 
 		}
-
-
 	}
 }
 

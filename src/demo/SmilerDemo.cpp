@@ -94,7 +94,7 @@ void runExp_TSLOOCVContPred_errorAndTime_isp(){
 
 	int fcol_start = 1;
 	int fcol_end = 1;
-	int queryNumPerBlade = 10;//
+	int queryNumPerBlade = 100;//can be set as 1024 or larger
 
 	SmilerDemo tse;
 	tse.runExp_TSLOOCVContPred_errorAndTime(fileHolder,  fcol_start,  fcol_end,  queryNumPerBlade);
