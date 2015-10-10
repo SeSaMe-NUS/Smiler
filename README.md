@@ -12,7 +12,7 @@ You can see a running example in the folder "src/demo". The demo also give a bri
 
 ### Usage
 
-Important functional APIs
+This section shows important functional APIs of SMiLer.
 
 #### Data loading function
 
