@@ -1,20 +1,21 @@
 SMiLer: A Semi-Lazy Time Series Prediction System for Sensors
 ===
+### 1. Introduction
 
 SMiLer is a SeMiLazy time series prediction system for sensors. The overall framework of SMiLer comprising of two main steps: search step and prediction step. More details about it can be found in the paper: 
 
 Jingbo Zhou, Anthony K. H. Tung; "SMiLer: A Semi-Lazy Time Series Prediction System for Sensors"; Proc. of 2015 ACM Int. Conf. on Management of Data (SIGMOD 2015)
 
-### Quick Run
+### 2. Quick Run
 You can see a running example in the folder "src/demo". The demo also give a brief introudction about the API and parameters.
 
 
 
-### Usage
+### 3. Usage
 
 This section shows important functional APIs of SMiLer.
 
-#### Data loading function
+#### 3.1 Data loading function
 
 ```cpp
 
@@ -24,7 +25,7 @@ This section shows important functional APIs of SMiLer.
 
 This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main function to load the sensor time series data into the GPU. The parameters of conf_DataEngine() are as follows:
 
-##### Parameters of conf_DataEngine():
+##### 3.1.1 Parameters of conf_DataEngine():
 
 	 'in_bladeData_vec' -- the time series of sensors, one blade is for one sensor
 	 'sc_band' -- the warping width for LB_keogh of DTW
@@ -32,7 +33,7 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 	 'maxOffset' -- do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series
 
 
-#### Continuous query function
+#### 3.2 Continuous query function
 
 ```cpp
 
@@ -46,7 +47,7 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 
 This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main function to start the continuous query on SMiLer. By this function, SMiLer makes continuous prediction for each vector in groupQuery_vec. The parameters of TSPred_continuous_onGPUIdx() are as follows:
 
-##### Parameters TSPred_continuous_onGPUIdx():
+##### 3.2.1 Parameters TSPred_continuous_onGPUIdx():
 
 	 'groupQuery_vec' -- a set of query vector for prediction, it can be multiple queries for mulitple sensors,
 		the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below
@@ -62,12 +63,9 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 	 'selfCorr' -- whether to use auto-tuning mechanism with self-adaptive prediction to determine the weight of K and L
 
 
-#### Parameters
 
 
-
-
-###Dependencies
+### 4. Dependencies
 The current code depends on the following external libraries:
 
 Armadillo (http://arma.sourceforge.net/), is a high quality C++ linear algebra library.
