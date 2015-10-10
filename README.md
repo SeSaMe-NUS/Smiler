@@ -52,7 +52,6 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 		the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below
 	 'contPrdStep' -- the step for making continuous prediction
 	 'groupQuery_blade_map' -- map the query to corresponding data blade (one data blade is just the time series of one sensor)
-	 
 	 'y_offset' -- the h-step ahead prediction for time series prediction.
 	                       for one step ahead prediction,y_offset==0
 	                       for multiple steps ahead prediction, y_offset = mul_step - 1
