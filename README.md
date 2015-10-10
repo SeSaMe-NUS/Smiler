@@ -14,21 +14,25 @@ You can see a running example in the folder "src/demo". The demo also give a bri
 
 Important functional APIs
 
+#### Data loading function
 
 ```cpp
 
-	void conf_DataEngine(vector<vector<float> >& in_bladeData_vec, int sc_band, int winDim,int maxOffset)
+	void conf_DataEngine(vector<vector<float> >& in_bladeData_vec, 
+				int sc_band, int winDim,int maxOffset)
 ```
 
 This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main function to load the sensor time series data into the GPU. The parameters of conf_DataEngine() are as follows:
 
-#### Parameters of conf_DataEngine():
+##### Parameters of conf_DataEngine():
 
 	 'in_bladeData_vec' -- the time series of sensors, one blade is for one sensor
 	 'sc_band' -- the warping width for LB_keogh of DTW
 	 'winDim' -- the window length
 	 'maxOffset' -- do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series
 
+
+#### Continuous query function
 
 ```cpp
 
@@ -42,7 +46,7 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 
 This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main function to start the continuous query on SMiLer. By this function, SMiLer makes continuous prediction for each vector in groupQuery_vec. The parameters of TSPred_continuous_onGPUIdx() are as follows:
 
-#### Parameters TSPred_continuous_onGPUIdx():
+##### Parameters TSPred_continuous_onGPUIdx():
 
 	 'groupQuery_vec' -- a set of query vector for prediction, it can be multiple queries for mulitple sensors,
 		the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below
