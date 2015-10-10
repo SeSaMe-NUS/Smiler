@@ -117,13 +117,26 @@ public:
 		this->display = display;
 	}
 
-	//maxOffset: do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series//for improve
+
+	/**
+	 * TODO:
+	 *@param:in_bladeData_vec -- the time series of sensors, one blade is for one sensor
+	 *@param:sc_band -- the warping width for LB_keogh of DTW
+	 *@param:winDim -- the window length
+	 *@param:maxOffset -- do not load maxOffset data into (or say left them out of) GPU to avoid exceeding the bounding when query the reference time series
+	 */
 	void conf_DataEngine(vector<vector<float> >& in_bladeData_vec, int sc_band, int winDim,int maxOffset) {//for improve
 				dataEngine->conf_bladeData(in_bladeData_vec,maxOffset);
 				this->sc_band=sc_band;
 				this->winDim = winDim;
-		}
+	}
 
+
+	/**
+	 * TODO:
+	 *@param:
+	 *@param:
+	 */
 	void conf_Predictor(vector<int>& Lvec, vector<int>& Kvec) {
 		this->Lvec = Lvec;
 		this->Kvec = Kvec;
@@ -187,13 +200,19 @@ public:
 	 * TODO:
 	 *     make continuous prediction for each vector in Xtst_vec with GPU kNN search
 	 *@param:
-	 *@param: Xtst_vec -- a set of query vector for prediction
-	 *@param: groupQuery_blade_map-- map the query to corresponding data blade
+	 *@param: groupQuery_vec -- a set of query vector for prediction, it can be multiple queries for mulitple sensors,
+	 *			the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below
+	 *@param: contPrdStep -- the step for making continuous prediction
+	 *@param: groupQuery_blade_map-- map the query to corresponding data blade (one data blade is just the time series of one sensor)
+	 *
 	 *@param: y_offset -- the h-step ahead prediction for time series prediction.
 	 *                      for one step ahead prediction,y_offset==0
 	 *                      for multiple steps ahead prediction, y_offset = mul_step - 1
-	 *@param: weightedTrn -- whether to do weighted training process
-	 *@param: selfCorr -- whether to do self-correcting prediction to determine the weight of K and L
+	 *@param: pred_selector -- to select the prediction model
+	 * 							pred_selector = 1, smiler-AR
+	 * 							pred_selector =0, smiler-GP (refer to section 5.2 of the paper SMiLer)
+	 *@param: weightedTrn -- whether to do weighted training process, i.e. give different weight of the kNN results based DTW distance
+	 *@param: selfCorr -- whether to use auto-tuning mechanism with self-adaptive prediction to determine the weight of K and L
 	 *
 	 *
 	 */
@@ -364,7 +383,6 @@ public:
 			t_prd+=t_end-t_start;
 			mae+=mae_ci; mse+=mse_ci; msse+=msse_ci; mnll+=mnll_ci;
 
-			//if (predErr) {
 			if (display) {
 
 				print_prdPerformancePerStep( ci, mae_ci,t_search, t_prd,  mse_ci,  msse_ci, mnll_ci, groupQuery_vec.size());

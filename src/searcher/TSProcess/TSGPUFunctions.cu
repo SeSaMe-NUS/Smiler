@@ -977,9 +977,7 @@ __global__ void compute_windowQuery_enhancedLowerBound(
 	int wqr_start_idx = (wq_id==0)?0:d_windowQuery_lowerBound_endIdx[wq_id-1];
 	int wqr_endIdx = d_windowQuery_lowerBound_endIdx[wq_id];
 
-	if((wqr_endIdx-wqr_start_idx)!=disjoint_win_num){
-		printf("with debug purpose error: disjoint_win_num=%d blade_len=%d",wqr_endIdx-wqr_start_idx,blade_len);
-	}
+
 //
 	for(int i=0;i<query_round;i++){
 		int winIdx = i*blockDim.x+threadIdx.x;

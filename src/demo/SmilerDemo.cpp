@@ -41,7 +41,8 @@ void SmilerDemo::runExp_TSLOOCVContPred_errorAndTime(string fileHolder, int fcol
 	int sc_band = 8;//for LB_keogh lower bound parameter
 	int windowDim = 16;//window size
 	double range = 5, sill = 1, nugget = 1;//seed parameters for Gaussian Processes
-	bool selfCorr = true;//for exp
+	bool selfCorr = true;//
+	//end parameter setting
 
 	vector<int> Lvec(ELV,ELV+sizeof(ELV)/sizeof(int));
 	vector<int> Kvec(EKV,EKV+sizeof(EKV)/sizeof(int));
@@ -85,7 +86,8 @@ void SmilerDemo::runExp_TSLOOCVContPred_errorAndTime(string fileHolder, int fcol
 				fcol_end, queryNumPerBlade,
 				contPrdStep, queryLenghLoaded,
 				Lvec, Kvec, range,
-				sill, nugget, y_step_ahead_array[i], sc_band, selfCorr);
+				sill, nugget, y_step_ahead_array[i], sc_band, selfCorr);// main function, this function loads data, cuts queries from the data,
+																		//and then run the smiler predictor(with kNN search and GP)
 	}
 }
 
@@ -94,7 +96,7 @@ void runExp_TSLOOCVContPred_errorAndTime_isp(){
 
 	int fcol_start = 1;
 	int fcol_end = 1;
-	int queryNumPerBlade = 100;//can be set as 1024 or larger
+	int queryNumPerBlade = 100;//can be set as 1024 or larger, this is to simulate multiple sensor prediction. If there have already been multiple sensors in the fileHoder, just set this queryNumPerBlade = 1
 
 	SmilerDemo tse;
 	tse.runExp_TSLOOCVContPred_errorAndTime(fileHolder,  fcol_start,  fcol_end,  queryNumPerBlade);
