@@ -96,7 +96,8 @@ void runExp_TSLOOCVContPred_errorAndTime_isp(){
 
 	int fcol_start = 1;
 	int fcol_end = 1;
-	int queryNumPerBlade = 100;//can be set as 1024 or larger, this is to simulate multiple sensor prediction. If there have already been multiple sensors in the fileHoder, just set this queryNumPerBlade = 1
+	int queryNumPerBlade = 10;//can be set as 1024 or larger, this is to simulate multiple sensor prediction.
+								//If there have already been multiple sensors in the fileHoder, just set this queryNumPerBlade = 1
 
 	SmilerDemo tse;
 	tse.runExp_TSLOOCVContPred_errorAndTime(fileHolder,  fcol_start,  fcol_end,  queryNumPerBlade);

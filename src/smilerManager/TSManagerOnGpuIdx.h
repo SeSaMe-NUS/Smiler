@@ -198,7 +198,7 @@ public:
 
 	/**
 	 * TODO:
-	 *     make continuous prediction for each vector in Xtst_vec with GPU kNN search
+	 *     make continuous prediction for each vector in groupQuery_vec with GPU kNN search
 	 *@param:
 	 *@param: groupQuery_vec -- a set of query vector for prediction, it can be multiple queries for mulitple sensors,
 	 *			the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below

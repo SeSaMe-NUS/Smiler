@@ -16,7 +16,6 @@
 #include "tools/BladeLoader.h"
 #include "tools/DataOperator/DataProcess.h"
 #include "tools/WrapperDataProcess.h"
-#include "tools/deviceDetector/deviceDetector.h"
 #include "searcher/WrapperGPUKNN.h"
 #include "searcher/WrapperScan.h"
 #include "searcher/GPUKNN/GPUManager.h"

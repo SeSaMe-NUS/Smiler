@@ -4,10 +4,10 @@ SMiLer: A Semi-Lazy Time Series Prediction System for Sensors
 
 SMiLer is a SeMiLazy time series prediction system for sensors. The overall framework of SMiLer comprising of two main steps: search step and prediction step. More details about it can be found in the paper: 
 
-Jingbo Zhou, Anthony K. H. Tung; "SMiLer: A Semi-Lazy Time Series Prediction System for Sensors"; Proc. of 2015 ACM Int. Conf. on Management of Data (SIGMOD 2015)
+****Jingbo Zhou, Anthony K. H. Tung; "SMiLer: A Semi-Lazy Time Series Prediction System for Sensors"; Proc. of 2015 ACM Int. Conf. on Management of Data (SIGMOD 2015)
 
 ### 2. Quick Run
-You can see a running example in the folder "src/demo". The demo also give a brief introudction about the API and parameters.
+You can see a running example in the folder "src/demo". The demo also gives a brief introudction about the API and parameters.
 
 
 
@@ -47,7 +47,7 @@ This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main funct
 
 This function is in src/smilerManager/TSManagerOnGpuIdx.h.  It is the main function to start the continuous query on SMiLer. By this function, SMiLer makes continuous prediction for each vector in groupQuery_vec. The parameters of TSPred_continuous_onGPUIdx() are as follows:
 
-##### 3.2.1 Parameters TSPred_continuous_onGPUIdx():
+##### 3.2.1 Parameters of TSPred_continuous_onGPUIdx():
 
 	 'groupQuery_vec' -- a set of query vector for prediction, it can be multiple queries for mulitple sensors,
 		the relations between sensors and queries are defined by a vector groupQuery_blade_map as show below
